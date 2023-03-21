@@ -1,0 +1,11 @@
+{% ckan_extends %}
+
+{% block package_basic_fields_custom %}
+
+<div id="field-size" style="display:none">
+    {{ form.input('size', label=_('Size'), id='field-size',
+    placeholder=_('size'), type='number', value=data.size, error=errors.size,
+    classes=['control-medium']) }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% ckan_extends %}
+
+{% block package_metadata_fields_custom %}
+
+<div>
+  <label style="vertical-align: middle;" for="advancedMetadataCheckbox">Advanced metadata for
+    experiments</label>&nbsp;
+  <input class="my-3 ml-3" type="checkbox" name="advancedMetadataCheckbox" id="advancedMetadataCheckbox" value="0"
+    style="width: 20px; height: 20px;vertical-align: text-bottom;" />
+  <br /><br />
+</div>
+
+<div id="advancedMetadataFields" style="display:none">
+  <div class="form-group control-group">
+    <label class="control-label" for="field-culture_medium">{{ _("Culture medium") }}</label>
+    <div class="controls">
+      <select id="field-culture_medium" name="culture_medium" data-module="autocomplete">
+        {% set empty_culture_medium = _('Select culture medium') %}
+        <option value="">{{ empty_culture_medium }}</option>
+        {% for culture_medium in h.culture_medium() %}
+        <option value="{{ culture_medium }}" {% if culture_medium in data.get('culture_medium', [])
+          %}selected="selected" {% endif %}>{{ culture_medium }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  {{ form.input('replicates_number', label=_('Number of replicates'), id='field-replicates_number',
+  placeholder=_('number of replicates'), type='number', value=data.replicates_number, error=errors.replicates_number,
+  classes=['control-medium']) }}
+  {{ form.input('cells_number', label=_('Number of cells/well'), id='field-cells_number', placeholder=_('number of
+  cells/well'), type='number', value=data.cells_number, error=errors.cells_number, classes=['control-medium']) }}
+  {{ form.input('ratio_hipsccms_hcaecs', label=_('Ratio hiPSC-CMs/HCAECs'), id='field-ratio_hipsccms_hcaecs',
+  placeholder=_('ratio hiPSC-CMs/HCAECs'), type='number', value=data.ratio_hipsccms_hcaecs,
+  error=errors.ratio_hipsccms_hcaecs, classes=['control-medium']) }}
+  {{ form.input('experiment_date', label=_('Date of experiment'), id='field-experiment_date', placeholder=_('date of
+  experiment'), type='date', value=data.experiment_date, error=errors.experiment_date, classes=['control-medium']) }}
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-toxin">{{ _("Toxin") }}</label>
+    <div class="controls">
+      <select id="field-toxin" name="toxin" data-module="autocomplete">
+        {% set empty_toxin = _('Select toxin') %}
+        <option value="">{{ empty_toxin }}</option>
+        {% for toxin in h.toxin() %}
+        <option value="{{ toxin }}" {% if toxin in data.get('toxin', []) %}selected="selected" {% endif %}>{{ toxin }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-age_type">{{ _("Age type") }}</label>
+    <div class="controls">
+      <select id="field-age_type" name="age_type" data-module="autocomplete">
+        {% set empty_age_type = _('Select age type') %}
+        <option value="">{{ empty_age_type }}</option>
+        {% for age_type in h.age_type() %}
+        <option value="{{ age_type }}" {% if age_type in data.get('age_type', []) %}selected="selected" {% endif %}>{{
+          age_type }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-dimension">{{ _("Dimension") }}</label>
+    <div class="controls">
+      <select id="field-dimension" name="dimension" data-module="autocomplete">
+        {% set empty_dimension = _('Select dimension') %}
+        <option value="">{{ empty_dimension }}</option>
+        {% for dimension in h.dimension() %}
+        <option value="{{ dimension }}" {% if dimension in data.get('dimension', []) %}selected="selected" {% endif %}>
+          {{ dimension }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-category">{{ _("Category") }}</label>
+    <div class="controls">
+      <select id="field-category" name="category" data-module="autocomplete">
+        {% set empty_category = _('Select category') %}
+        <option value="">{{ empty_category }}</option>
+        {% for category in h.category() %}
+        <option value="{{ category }}" {% if category in data.get('category', []) %}selected="selected" {% endif %}>{{
+          category }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-content">{{ _("Content") }}</label>
+    <div class="controls">
+      <select id="field-content" name="content" data-module="autocomplete">
+        {% set empty_content = _('Select content') %}
+        <option value="">{{ empty_content }}</option>
+        {% for content in h.content() %}
+        <option value="{{ content }}" {% if content in data.get('content', []) %}selected="selected" {% endif %}>{{
+          content }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group control-group">
+    <label class="control-label" for="field-model">{{ _("Model") }}</label>
+    <div class="controls">
+      <select id="field-model" name="model" data-module="autocomplete">
+        {% set empty_model = _('Select model') %}
+        <option value="">{{ empty_model }}</option>
+        {% for model in h.model() %}
+        <option value="{{ model }}" {% if model in data.get('model', []) %}selected="selected" {% endif %}>{{ model }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</div>
+
+<script scoped src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script scoped type="text/javascript">
+  $('#advancedMetadataCheckbox').change(function () {
+    $('#advancedMetadataFields').toggle();
+  });
+</script>
+
+{{ super() }}
+
+{% endblock %}

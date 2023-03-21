@@ -1,0 +1,96 @@
+{% ckan_extends %}
+
+{% block extras %}
+
+  {% if pkg_dict.size %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Size") }}</th>
+      <td id="datasetSize" class="dataset-details">{{ pkg_dict.size }}</td>
+    </tr>
+
+    <script scoped src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script scoped src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.6.0/math.min.js"></script>
+    <script>
+      var down = document.getElementById('datasetSize');
+      window.onload = function () {
+        var bytes = down.innerHTML;
+        down.innerHTML = size(bytes);
+      }
+      size = function (bytes) {
+        if (bytes == 0) {
+          return "0.00 B";
+        }
+        var e = Math.floor(Math.log(bytes) / Math.log(1024));
+        return (bytes / Math.pow(1024, e)).toFixed(2) +
+          ' ' + ' KMGTP'.charAt(e) + 'B';
+      }
+    </script>
+  {% endif %}
+
+  {% if pkg_dict.experiment_date %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Date of experiment") }}</th>
+      <td class="dataset-details">{{ pkg_dict.experiment_date }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.culture_medium %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Culture medium") }}</th>
+      <td class="dataset-details">{{ pkg_dict.culture_medium[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.replicates_number %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Number of replicates") }}</th>
+      <td class="dataset-details">{{ pkg_dict.replicates_number }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.cells_number %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Number of cells/well") }}</th>
+      <td class="dataset-details">{{ pkg_dict.cells_number }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.ratio_hipsccms_hcaecs %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Ratio hiPSC-CMs/HCAECs") }}</th>
+      <td class="dataset-details">{{ pkg_dict.ratio_hipsccms_hcaecs }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.toxin %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Toxin") }}</th>
+      <td class="dataset-details">{{ pkg_dict.toxin[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.age_type %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Age type") }}</th>
+      <td class="dataset-details">{{ pkg_dict.age_type[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.dimension %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Dimension") }}</th>
+      <td class="dataset-details">{{ pkg_dict.dimension[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.category %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Category") }}</th>
+      <td class="dataset-details">{{ pkg_dict.category[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.content %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Content") }}</th>
+      <td class="dataset-details">{{ pkg_dict.content[0] }}</td>
+    </tr>
+  {% endif %}
+  {% if pkg_dict.model %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Model") }}</th>
+      <td class="dataset-details">{{ pkg_dict.model[0] }}</td>
+    </tr>
+  {% endif %}
+{% endblock %}
