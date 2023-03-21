@@ -21,7 +21,7 @@ CKAN extension that adds additional fields to dataset metadata, such as size and
 
 4. Add the extension to your list of plugins in the ckan config file (usually `/etc/ckan/default/ckan.ini`)
    ```
-   ckan.plugins = stats text_view recline_view ckanext-extrafields
+   ckan.plugins = stats text_view recline_view extrafields
    ```
 
 5. Start CKAN
